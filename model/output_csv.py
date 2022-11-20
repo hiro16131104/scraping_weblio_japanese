@@ -10,6 +10,7 @@ class OutputCsv:
     # 全てのインスタンスで共有する変数（クラス変数）
     # CSVファイル（成果物）の保存先の絶対パスを格納するための変数
     file_path: str
+    ENC = "utf-8"
 
     def __init__(
         self, category: Category, idx_sub_category: int = None
@@ -33,7 +34,7 @@ class OutputCsv:
     # CSVファイルを作成
     def make_csv_file(self) -> None:
         # ファイルを新規作成し、ヘッダーを書き込む
-        with open(OutputCsv.file_path, "w") as file:
+        with open(OutputCsv.file_path, "w", encoding=OutputCsv.ENC) as file:
             # 値はダブルクォーテーションで囲み、改行コードはLFを採用
             csv.writer(
                 file,
@@ -46,7 +47,7 @@ class OutputCsv:
     # 'list'型に整形されたスクレイピング結果をCSVファイルに書き込む
     def write_csv_file(self) -> None:
         # 既存ファイルに追記
-        with open(OutputCsv.file_path, "a")as file:
+        with open(OutputCsv.file_path, "a", encoding=OutputCsv.ENC)as file:
             # 値はダブルクォーテーションで囲み、改行コードはLFを採用
             csv.writer(
                 file,
